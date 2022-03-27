@@ -1,0 +1,25 @@
+NOTES:
+
+- Reg numbers are always 7, 8 or 9 digits
+    e.g. 91D2134 (7)
+         91LD6969 (8)
+         212LD6969 (9)
+
+
+- If reg has 7 digits
+    First 2 digits cannot be letters (have to be numbers)
+    Third digit has to be a single letter county (G,L,D,C,T)
+    Last four digits have to be numbers (0-9)
+
+- If reg has 8 digits
+    First 2 digits cannot be letters (have to be numbers)
+    Third and fourth digit have to be letters (two letter county)
+    Last four digits have to be numbers
+
+- If reg has 9 digits
+    First three digits must be numbers
+    4th and 5th digit have to be a two letter county (both be letters)
+    Last four digits must be numbers
+
+
+Need to get the number of lines in the indata.txt file

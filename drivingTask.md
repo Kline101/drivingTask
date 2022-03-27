@@ -58,3 +58,11 @@ the test results.
 
 
 [TOTAL OF 50 MARKS]
+
+To Compile:
+
+gcc Car.c
+
+
+To Run:
+./a.out drivingTask.c
