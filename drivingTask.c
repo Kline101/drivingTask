@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-// alexanderdare
+
 //Structure
 typedef struct car {
 int year;
@@ -10,6 +10,7 @@ char registration[9];
 char colour[10];
 float engine;
 int tax;
+char reg_check[10];
 } car_type;
 
 int option;
@@ -24,6 +25,7 @@ int main() {
 // Opening Files
     char name[100];  /* name of the file to use  */
     FILE *in_file;    /* file for input */
+    // For file-related processing functions. e.g. fgets, fopen, fclose
     printf("Name of the File (e.g indata.txt) ");
     fgets(name, sizeof(name), stdin);
     name[strlen(name)-1] = '\0';
@@ -37,7 +39,7 @@ int main() {
   fscanf(in_file , "%d %s %s %f", &cars[i].year, cars[i].registration, cars[i].colour, &cars[i].engine);
 
 
-// Car Taxation
+// Car Registration
 }
 printf("\n\nDriving Task by Jahz\n\n");
   usermenu();
@@ -77,51 +79,77 @@ void usermenu() {
   int counter = ctr + 1;
 
     switch(option){
+        // For option 1: To print the results to the screen only
         case 1:
         for (i=0; i < counter; ++i){
-            tax(cars,i);
-        printf("\nThe tax on car %d is: €%.3d per year\n",i+1, cars[i].tax);
+            reg_check(cars,i);
+        printf("\n The reg is %d \n",i+1, cars[i].reg_check);
         }
         break;
-    case 2:
+    
+      case 2:
         for (i=0; i < counter; ++i){
-            tax(cars,i);
-            fprintf(outdata, "\nThe tax on car %d is: €%d\n",i+1, cars[i].tax);
+          reg_check(cars,i);
+          fprintf(outdata, "\nThe tax on car %d is: €%d\n",i+1, cars[i].reg_check);
         }
         break;
-    case 3:
+      case 3:
         for (i=0; i < counter; ++i){
-            tax(cars,i);
-        printf("\nThe tax on car %d is: €%.3d per year\n",i+1, cars[i].tax);
-        fprintf(outdata, "\nThe tax on car %d is: €%d\n",i+1, cars[i].tax);
+            reg_check(cars,i);
+          printf("\nThe tax on car %d is: €%.3d per year\n",i+1, cars[i].reg_check);
+          fprintf(outdata, "\nThe tax on car %d is: €%d\n",i+1, cars[i].reg_check);
         }
         break;
-    default:
+      default:
         printf("\n\nYou have made an illegal choice.\n");
-        usermenu();
+          usermenu();
     }
     fclose(outdata);
 }
 
-int tax(car_type cars[],int i) {
-  if(cars[i].year > 2014){
-    if(cars[i].engine <= 1.6){
-      cars[i].tax = 150;
+
+int reg_check(car_type cars[],int i) {
+    // If year is greater than 2013, then it should have 8 or 9 digits
+    if ((cars[i].year > 2013) && ((strlen(cars[i].registration))) == 8 || strlen(cars[i].registration) == 9) {
+      cars[i].reg_check; // change to full sentence
     }
-    else{
-      cars[i].tax = 300;
+
+    // If year is less than 2013, then it should have 7 or 8
+    else if ((cars[i].year < 2013) && (strlen(cars[i].registration) == 7) || strlen(cars[i].registration) == 8) {
+      return cars[i].reg_check;
+    } 
+
+    // This is for reg with 7 digits
+    else if (strlen(cars[i].registration) == 7) {
+      // First two digits cannot be letters
+      if (isdigit(&cars[i].registration[0]) == "False") {
+        "This car does not have a valid registration. The first two digits of the registration number are not numbers";
+      }
     }
-  }
-  else{
-    if(cars[i].engine < 1.4){
-      cars[i].tax = 200;
-    }
-    else if(cars[i].engine > 1.6){
-      cars[i].tax = 600;
-    }
-    else{
-      cars[i].tax = 400;
-    }
-  }
-  return cars[i].tax;
+    return cars[i].reg_check;
 }
+
+
+
+
+//   if(cars[i].year > 2014){
+//     if(cars[i].engine <= 1.6){
+//       cars[i].tax = 150;
+//     }
+//     else{
+//       cars[i].tax = 300;
+//     }
+//   }
+//   else{
+//     if(cars[i].engine < 1.4){
+//       cars[i].tax = 200;
+//     }
+//     else if(cars[i].engine > 1.6){
+//       cars[i].tax = 600;
+//     }
+//     else{
+//       cars[i].tax = 400;
+//     }
+//   }
+//   return cars[i].tax;
+
