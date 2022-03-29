@@ -7,10 +7,10 @@
 //Structure
 typedef struct car {
 int year;
-char registration[9];
+char registration[10];
 char colour[10];
 float engine;
-int tax;
+
 char reg_check;
 } car_type;
 
@@ -24,22 +24,19 @@ car_type cars[6];
 
 int reg_check(car_type cars[],int i) {
     // If year is greater than or equal 2013, then it should have 8 or 9 digits
-    if (cars[i].year >= 2013 && (((strlen(cars[i].registration))) == 8) || ((strlen(cars[i].registration)) == 9)) {
+    if (cars[i].year >= 2013 && ((((strlen(cars[i].registration))) == 8) || ((strlen(cars[i].registration)) == 9))) {
       cars[i].reg_check = true; // change to full sentence
     }
 
     // If year is less than 2013, then it should have 7 or 8
-    else if ((cars[i].year < 2013) && (strlen(cars[i].registration) == 7) || strlen(cars[i].registration) == 8) {
-      return cars[i].reg_check = true;
+    else if ((cars[i].year < 2013) && ((strlen(cars[i].registration) == 7) || strlen(cars[i].registration) == 8)) {
+      cars[i].reg_check = true;
     } 
 
-    // // This is for reg with 7 digits
-    // else if (strlen(cars[i].registration) == 7) {
-    //   // First two digits cannot be letters
-    //   if (isdigit(&cars[i].registration[0]) == "False") {
-    //     "This car does not have a valid registration. The first two digits of the registration number are not numbers";
-    //   }
-    // }
+    else {
+      cars[i].reg_check = false;
+    }
+
     return cars[i].reg_check;
 }
 
@@ -88,8 +85,6 @@ void usermenu() {
   int ctr = 0;  
   char fname[FSIZE] = "indata.txt";
   char c; 
-	// printf(" Input the file name to be opened : ");
-	// scanf("%s",fname);
 
   fptr = fopen(fname, "r");
 
@@ -105,7 +100,7 @@ void usermenu() {
     switch(option){
         // For option 1: To print the results to the screen only
         case 1:
-        for (i=0; i < counter; ++i) {
+        for (i=0; i < counter; i++) {
             if(reg_check(cars,i) == true) {
               printf("\n Car %d has a VALID registration. Its reg number is %s \n",i+1, cars[i].registration);
             }
@@ -116,7 +111,7 @@ void usermenu() {
         break;
     
       case 2:
-        for (i=0; i < counter; ++i){
+        for (i=0; i < counter; i++){
           if(reg_check(cars,i) == true) {
             fprintf(outdata, "\n Car %d has a VALID registration. Its reg number is %s \n",i+1, cars[i].registration);
           }
@@ -126,9 +121,9 @@ void usermenu() {
         }
         break;
       case 3:
-        for (i=0; i < counter; ++i){
-          if(reg_check(cars,i)) {
-            printf("\n Car %d has a valid registration. Its reg number is %c \n",i+1, cars[i].reg_check);
+        for (i=0; i < counter; i++){
+          if(reg_check(cars,i) == true) {
+            printf("\n Car %d has a valid registration. Its reg number is %s \n",i+1, cars[i].registration);
             fprintf(outdata, "\n Car %d has a valid registration. Its reg number is %s \n",i+1, cars[i].registration);
           }
           else {

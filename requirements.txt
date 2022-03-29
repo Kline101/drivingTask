@@ -22,7 +22,34 @@ NOTES:
     Last four digits must be numbers
 
 
-Need to get the number of lines in the indata.txt file
+Need to get the number of lines in the indata.txt file: Done
+
+
+Bugs:
+29/02 10:30 (Bug)- (fixed) (just made the character size of registration bigger)
+    When the reg is 2013 and above and has a double digit county code; it includes the car colour in the output
+        e.g. 
+
+(The terminal)
+Driving Task by Jahz
+
+Please choose one of the options below:
+1.To print the results to the screen only, press 1
+2.To print the results to the file only, press 2
+3.To print the results to both the screen and file, press 3
+1
+
+ Car 1 has a VALID registration. Its reg number is 91D2134 
+
+ Car 2 has a VALID registration. Its reg number is 99D2939 
+
+ Car 3 has an INVALID registration. Its reg number is 131GG3794silver 
+(end of terminal)
+
+
+
+
+
 
 Sources:
 alexanderdare 
