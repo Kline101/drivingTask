@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include<ctype.h>
+#include <stdbool.h>
 
 //Structure
 typedef struct car {
@@ -10,7 +11,7 @@ char registration[9];
 char colour[10];
 float engine;
 int tax;
-char reg_check[10];
+char reg_check;
 } car_type;
 
 int option;
@@ -20,6 +21,29 @@ void usermenu();
 int tax(car_type cars[],int i);
 
 car_type cars[6];
+
+int reg_check(car_type cars[],int i) {
+    // If year is greater than or equal 2013, then it should have 8 or 9 digits
+    if (cars[i].year >= 2013 && (((strlen(cars[i].registration))) == 8) || ((strlen(cars[i].registration)) == 9)) {
+      cars[i].reg_check = true; // change to full sentence
+    }
+
+    // If year is less than 2013, then it should have 7 or 8
+    else if ((cars[i].year < 2013) && (strlen(cars[i].registration) == 7) || strlen(cars[i].registration) == 8) {
+      return cars[i].reg_check = true;
+    } 
+
+    // // This is for reg with 7 digits
+    // else if (strlen(cars[i].registration) == 7) {
+    //   // First two digits cannot be letters
+    //   if (isdigit(&cars[i].registration[0]) == "False") {
+    //     "This car does not have a valid registration. The first two digits of the registration number are not numbers";
+    //   }
+    // }
+    return cars[i].reg_check;
+}
+
+
 
 int main() {
 // Opening Files
@@ -81,23 +105,36 @@ void usermenu() {
     switch(option){
         // For option 1: To print the results to the screen only
         case 1:
-        for (i=0; i < counter; ++i){
-            reg_check(cars,i);
-        printf("\n The reg is %d \n",i+1, cars[i].reg_check);
+        for (i=0; i < counter; ++i) {
+            if(reg_check(cars,i) == true) {
+              printf("\n Car %d has a VALID registration. Its reg number is %s \n",i+1, cars[i].registration);
+            }
+            else {
+              printf("\n Car %d has an INVALID registration. Its reg number is %s \n",i+1, cars[i].registration);
+            }
         }
         break;
     
       case 2:
         for (i=0; i < counter; ++i){
-          reg_check(cars,i);
-          fprintf(outdata, "\nThe tax on car %d is: €%d\n",i+1, cars[i].reg_check);
+          if(reg_check(cars,i) == true) {
+            fprintf(outdata, "\n Car %d has a VALID registration. Its reg number is %s \n",i+1, cars[i].registration);
+          }
+          else {
+            fprintf(outdata, "\n Car %d has an INVALID registration. Its reg number is %s \n",i+1, cars[i].registration);
+          }
         }
         break;
       case 3:
         for (i=0; i < counter; ++i){
-            reg_check(cars,i);
-          printf("\nThe tax on car %d is: €%.3d per year\n",i+1, cars[i].reg_check);
-          fprintf(outdata, "\nThe tax on car %d is: €%d\n",i+1, cars[i].reg_check);
+          if(reg_check(cars,i)) {
+            printf("\n Car %d has a valid registration. Its reg number is %c \n",i+1, cars[i].reg_check);
+            fprintf(outdata, "\n Car %d has a valid registration. Its reg number is %s \n",i+1, cars[i].registration);
+          }
+          else {
+            printf("\n Car %d has a valid registration. Its reg number is %c \n",i+1, cars[i].reg_check);
+            fprintf(outdata, "\n Car %d has a valid registration. Its reg number is %s \n",i+1, cars[i].registration);
+          }
         }
         break;
       default:
@@ -106,29 +143,6 @@ void usermenu() {
     }
     fclose(outdata);
 }
-
-
-int reg_check(car_type cars[],int i) {
-    // If year is greater than 2013, then it should have 8 or 9 digits
-    if ((cars[i].year > 2013) && ((strlen(cars[i].registration))) == 8 || strlen(cars[i].registration) == 9) {
-      cars[i].reg_check; // change to full sentence
-    }
-
-    // If year is less than 2013, then it should have 7 or 8
-    else if ((cars[i].year < 2013) && (strlen(cars[i].registration) == 7) || strlen(cars[i].registration) == 8) {
-      return cars[i].reg_check;
-    } 
-
-    // This is for reg with 7 digits
-    else if (strlen(cars[i].registration) == 7) {
-      // First two digits cannot be letters
-      if (isdigit(&cars[i].registration[0]) == "False") {
-        "This car does not have a valid registration. The first two digits of the registration number are not numbers";
-      }
-    }
-    return cars[i].reg_check;
-}
-
 
 
 
