@@ -7,8 +7,8 @@
 //Structure
 typedef struct car {
 int year;
-char registration[10];
-char colour[10];
+char registration[100];
+char colour[100];
 float engine;
 
 char reg_check;
@@ -20,9 +20,18 @@ int i;
 void usermenu();
 int tax(car_type cars[],int i);
 
-car_type cars[6];
+car_type cars[1000];
+
+
+int firstTwo(number) {
+  char number[9];
+  char firstTwo[9];
+  memcpy(firstTwo, number , 2);
+  printf("%s", firstTwo);
+}
 
 int reg_check(car_type cars[],int i) {
+    // Start of part 1: Write a function to check if the car registration number is correct or not
     // If year is greater than or equal 2013, then it should have 8 or 9 digits
     if (cars[i].year >= 2013 && ((((strlen(cars[i].registration))) == 8) || ((strlen(cars[i].registration)) == 9))) {
       cars[i].reg_check = true; // change to full sentence
@@ -31,15 +40,22 @@ int reg_check(car_type cars[],int i) {
     // If year is less than 2013, then it should have 7 or 8
     else if ((cars[i].year < 2013) && ((strlen(cars[i].registration) == 7) || strlen(cars[i].registration) == 8)) {
       cars[i].reg_check = true;
-    } 
+    }
+
+    // checks if the last 2 digits of the year matches the first two digits of the registration
+    else if (cars[i].year % 100 == atoi(firstTwo(cars[i].registration))) {
+      cars[i].reg_check = true;
+    }
+
 
     else {
       cars[i].reg_check = false;
     }
 
     return cars[i].reg_check;
-}
 
+
+}
 
 
 int main() {
@@ -55,14 +71,14 @@ int main() {
         fprintf(stderr, "Could not open file\n");
         exit(8);
     }
-    for (i=0;i<6;i++)
+    for (i=0;i<1000;i++)
 {
   fscanf(in_file , "%d %s %s %f", &cars[i].year, cars[i].registration, cars[i].colour, &cars[i].engine);
 
 
 // Car Registration
 }
-printf("\n\nDriving Task by Jahz\n\n");
+printf("\n\nDriving Task\n\n");
   usermenu();
 
 
@@ -84,7 +100,7 @@ void usermenu() {
   FILE *fptr;
   int ctr = 0;  
   char fname[FSIZE] = "indata.txt";
-  char c; 
+  char c;
 
   fptr = fopen(fname, "r");
 
@@ -109,7 +125,7 @@ void usermenu() {
             }
         }
         break;
-    
+   
       case 2:
         for (i=0; i < counter; i++){
           if(reg_check(cars,i) == true) {
@@ -138,27 +154,3 @@ void usermenu() {
     }
     fclose(outdata);
 }
-
-
-
-//   if(cars[i].year > 2014){
-//     if(cars[i].engine <= 1.6){
-//       cars[i].tax = 150;
-//     }
-//     else{
-//       cars[i].tax = 300;
-//     }
-//   }
-//   else{
-//     if(cars[i].engine < 1.4){
-//       cars[i].tax = 200;
-//     }
-//     else if(cars[i].engine > 1.6){
-//       cars[i].tax = 600;
-//     }
-//     else{
-//       cars[i].tax = 400;
-//     }
-//   }
-//   return cars[i].tax;
-

@@ -1,0 +1,93 @@
+NOTES:
+
+- Reg numbers are always 7, 8 or 9 digits
+    e.g. 91D2134 (7)
+         91LD6969 (8)
+         212LD6969 (9)
+
+
+- If reg has 7 digits
+    First 2 digits cannot be letters (have to be numbers)
+    Third digit has to be a single letter county (G,L,D,C,T)
+    Last four digits have to be numbers (0-9)
+
+- If reg has 8 digits
+    First 2 digits cannot be letters (have to be numbers)
+    Third and fourth digit have to be letters (two letter county)
+    Last four digits have to be numbers
+
+- If reg has 9 digits
+    First three digits must be numbers
+    4th and 5th digit have to be a two letter county (both be letters)
+    Last four digits must be numbers
+
+
+Need to get the number of lines in the indata.txt file: Done
+Need to compare the last two of the year and the first two or three of the registration: In progress
+
+
+Bugs:
+29/02 10:30am (Bug)- (fixed) (just made the character size of registration bigger)
+    When the reg is 2013 and above and has a double digit county code; it includes the car colour in the output
+        e.g. 
+
+(The terminal)
+Driving Task by Jahz
+
+Please choose one of the options below:
+1.To print the results to the screen only, press 1
+2.To print the results to the file only, press 2
+3.To print the results to both the screen and file, press 3
+1
+
+ Car 1 has a VALID registration. Its reg number is 91D2134 
+
+ Car 2 has a VALID registration. Its reg number is 99D2939 
+
+ Car 3 has an INVALID registration. Its reg number is 131GG3794silver 
+(end of terminal)
+
+
+29/02 11:40 (Bug) - (not resolved) 
+    The program can't properly determine if the reg is valid or not after the 6th line of indata.txt.
+    e.g.
+
+(terminal)
+Name of the File (e.g indata.txt) indata.txt
+
+
+Driving Task by Jahz
+
+Please choose one of the options below:
+1.To print the results to the screen only, press 1
+2.To print the results to the file only, press 2
+3.To print the results to both the screen and file, press 3
+1
+ Car 1 has an INVALID registration. Its reg number is 050135423 
+
+ Car 2 has a VALID registration. Its reg number is 91D2134 
+
+ Car 3 has an INVALID registration. Its reg number is 99D2939232blue 
+
+ Car 4 has a VALID registration. Its reg number is 211WW3794 
+
+ Car 5 has a VALID registration. Its reg number is 03C2334 
+
+ Car 6 has a VALID registration. Its reg number is 131M05136 
+
+ Car 7 has an INVALID registration. Its reg number is  
+(end of terminal)
+
+Also doesn't display reg number after the 6th line
+
+Possible Solutions? 
+- Seperate the print reg statement from the if statement. Should print the reg number regardless of if statement (didn't work)
+- I don't have a clue for the if statement problem yet
+- It shows the same behaviour when it reads a line that is just blank
+- line 58 is the problem, it only allows for 6
+- Changed space to 1000 and 1000
+
+
+
+Sources:
+alexanderdare 

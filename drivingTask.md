@@ -16,8 +16,6 @@ have one or two letters e.g. G, L, D, C, T, LD, MO, WD.
 Write a function to check if the car registration number is correct or not
 
 
-
-
 ## Part 2
 **[5 marks]**
 
@@ -61,8 +59,9 @@ the test results.
 
 To Compile:
 
-gcc Car.c
+`gcc drivingTask.C`
 
 
 To Run:
-./a.out drivingTask.c
+
+`./a.out drivingTask.c`
