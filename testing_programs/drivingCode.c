@@ -12,6 +12,7 @@ char registration[10];
 char colour[10];
 float engine;
 
+// this is a new field to check if the reg number is correct
 char reg_check;
 } car_type;
 
@@ -24,38 +25,22 @@ int tax(car_type cars[],int i);
 car_type cars[100];
 
 
-int firstTwo(number) {
-  char firstTwo[9];
-  memcpy(firstTwo, number , 2);
-  
+int firstTwo(car_type cars[], int i, char reg) {
+  while (cars[i].registration != ) {
+  }
 }
-
 
 bool reg_check(car_type cars[],int i) {
     // If year is greater than or equal 2013, then it should have 8 or 9 digits
     if (cars[i].year >= 2013 && ((((strlen(cars[i].registration))) == 8) || ((strlen(cars[i].registration)) == 9))) {
-      cars[i].reg_check = true; // change to full sentence
+        if ((cars[i].year % 100) % atoi(firstTwo((cars[i].registration)) == 0)) {
+            cars[i].reg_check = true;
+        }
     }
 
-    // If year is less than 2013, then it should have 7 or 8
+    // If year is less than 2013, then it should have 7 or 8 digits
     else if ((cars[i].year < 2013) && ((strlen(cars[i].registration) == 7) || strlen(cars[i].registration) == 8)) {
       cars[i].reg_check = true;
-    }
-
-    // checking last 2 of .year and last 2 or 3 with year over 2000
-    else if (cars[i].year >= 2013) {
-      // if year matches first 2 digits of registration
-      if (cars[i].year % firstTwo((cars[i].registration) == 0)) {
-        cars[i].reg_check = true;
-        // printf("\t For YEAR > 2000 the last two digits are \n %d", cars[i].year);
-      }
-    }
-
-
-    else if (cars[i].year < 2013) {
-      if (cars[i].year == (cars[i].year - 1900)) {
-        printf("\t  For YEAR < 2000 the last two digits are \n %d", cars[i].year);
-      }
     }
 
     else {

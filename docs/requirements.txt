@@ -23,7 +23,7 @@ NOTES:
 
 
 Need to get the number of lines in the indata.txt file: Done
-Need to compare the last two of the year and the first two or three of the registration: In progress
+Need to compare the last two of the year and the first two of the registration: In progress
 
 
 Bugs:
@@ -48,7 +48,7 @@ Please choose one of the options below:
 (end of terminal)
 
 
-29/02 11:40 (Bug) - (not resolved) 
+29/02 11:40 (Bug) - (Fixed - changed the char size from 6 to 100, however problem will still arise after 100) 
     The program can't properly determine if the reg is valid or not after the 6th line of indata.txt.
     e.g.
 
@@ -85,7 +85,7 @@ Possible Solutions?
 - I don't have a clue for the if statement problem yet
 - It shows the same behaviour when it reads a line that is just blank
 - line 58 is the problem, it only allows for 6
-- Changed space to 1000 and 1000
+- Changed char size to 1000 and 1000
 
 
 
